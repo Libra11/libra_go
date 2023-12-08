@@ -27,3 +27,8 @@ mysql:
   host: 127.0.0.1
   port: 3309
   db: libra
+jwt:
+  accessExp: 7
+  refreshExp: 30
+  accessSecret: libra
+  refreshSecret: libra

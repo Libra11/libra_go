@@ -7,7 +7,9 @@ import (
 	"libra.com/common"
 	"libra.com/common/encrypts"
 	"libra.com/common/errs"
+	"libra.com/common/jwts"
 	"libra.com/grpc/service/user"
+	"libra.com/user/config"
 	"libra.com/user/internal/dao"
 	"libra.com/user/internal/data/member"
 	"libra.com/user/internal/repo"
@@ -105,4 +107,34 @@ func (l *ServiceUser) Register(ctx context.Context, message *user.RegisterMessag
 		return &user.RegisterResponse{}, errs.GrpcErr(model.GormSetError)
 	}
 	return &user.RegisterResponse{}, nil
+}
+
+func (l *ServiceUser) Login(ctx context.Context, message *user.LoginMessage) (*user.LoginResponse, error) {
+	pwd := encrypts.Md5(message.Password)
+	mem, err := l.member.FindMember(ctx, message.Name, pwd)
+	if mem == nil {
+		return &user.LoginResponse{}, model.AccountAndPwdError
+	}
+	if err != nil {
+		zap.L().Error("Login FindMember db fail", zap.Error(err))
+		return &user.LoginResponse{}, model.GormGetError
+	}
+
+	accessConf := jwts.TokenConfig{
+		Val:    message.Name,
+		Exp:    time.Duration(config.C.JC.AccessExp * 3600 * 24 * 1000),
+		Secret: config.C.JC.AccessSecret,
+	}
+	refreshConf := jwts.TokenConfig{
+		Val:    message.Name,
+		Exp:    time.Duration(config.C.JC.RefreshExp * 3600 * 24 * 1000),
+		Secret: config.C.JC.RefreshSecret,
+	}
+	jwtToken := jwts.CreateJwtToken(accessConf, refreshConf)
+	return &user.LoginResponse{
+		AccessToken:    jwtToken.AccessToken,
+		RefreshToken:   jwtToken.RefreshToken,
+		AccessTokenExp: jwtToken.AccessExp,
+		TokenType:      "bearer",
+	}, nil
 }
