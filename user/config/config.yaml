@@ -21,3 +21,9 @@ redis:
   port: 6379
   password: ""
   db: 0
+mysql:
+  username: root
+  password: root
+  host: localhost
+  port: 3309
+  db: libra

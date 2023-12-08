@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"libra.com/api/api/user"
+	"libra.com/api/middleware"
 )
 
 type Router interface {
@@ -21,6 +22,7 @@ func (*RegisterRouter) Route(router Router, r *gin.Engine) {
 }
 
 func InitRouter(r *gin.Engine) {
+	r.Use(middleware.Cors())
 	rg := New()
 	rg.Route(&user.RouterUser{}, r)
 }

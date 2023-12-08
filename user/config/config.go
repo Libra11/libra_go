@@ -15,6 +15,7 @@ type Config struct {
 	SC    *ServerConfig
 	GC    *GrpcConfig
 	EC    *EtcdConfig
+	MC    *MysqlConfig
 }
 
 type ServerConfig struct {
@@ -31,6 +32,14 @@ type GrpcConfig struct {
 
 type EtcdConfig struct {
 	Addrs []string
+}
+
+type MysqlConfig struct {
+	Username string
+	Password string
+	Host     string
+	Port     int
+	Db       string
 }
 
 func InitConfig() *Config {
@@ -50,6 +59,7 @@ func InitConfig() *Config {
 	conf.InitServerConfig()
 	conf.InitGrpcConfig()
 	conf.InitEtcdConfig()
+	conf.InitMysqlConfig()
 	return conf
 }
 
@@ -105,4 +115,15 @@ func (c *Config) InitRedisOptions() *redis.Options {
 		Password: c.viper.GetString("redis.password"), // no password set
 		DB:       c.viper.GetInt("db"),                // use default DB
 	}
+}
+
+func (c *Config) InitMysqlConfig() {
+	mc := &MysqlConfig{
+		Username: c.viper.GetString("mysql.username"),
+		Password: c.viper.GetString("mysql.password"),
+		Host:     c.viper.GetString("mysql.host"),
+		Port:     c.viper.GetInt("mysql.port"),
+		Db:       c.viper.GetString("mysql.db"),
+	}
+	c.MC = mc
 }

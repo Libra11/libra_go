@@ -6,8 +6,9 @@ import (
 	"google.golang.org/grpc/resolver"
 	"libra.com/common/discovery"
 	"libra.com/common/logs"
+	"libra.com/grpc/service/user"
 	"libra.com/user/config"
-	loginServiceV1 "libra.com/user/pkg/service/login.service.v1"
+	userService "libra.com/user/pkg/service/user"
 	"log"
 	"net"
 )
@@ -40,7 +41,7 @@ func InitGRPCServer() *grpc.Server {
 	c := &gRPCConfig{
 		Addr: config.C.GC.Addr,
 		RegisterFunc: func(s *grpc.Server) {
-			loginServiceV1.RegisterLoginServiceServer(s, loginServiceV1.New())
+			user.RegisterUserServiceServer(s, userService.New())
 		},
 	}
 	s := grpc.NewServer()

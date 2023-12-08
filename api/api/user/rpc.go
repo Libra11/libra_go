@@ -7,11 +7,11 @@ import (
 	"libra.com/api/config"
 	"libra.com/common/discovery"
 	"libra.com/common/logs"
-	loginServiceV1 "libra.com/user/pkg/service/login.service.v1"
+	userService "libra.com/grpc/service/user"
 	"log"
 )
 
-var ClientUser loginServiceV1.LoginServiceClient
+var ClientUser userService.UserServiceClient
 
 func InitUserRpcClient() {
 	etcdRegister := discovery.NewResolver(config.C.EC.Addrs, logs.LG)
@@ -20,5 +20,5 @@ func InitUserRpcClient() {
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
-	ClientUser = loginServiceV1.NewLoginServiceClient(conn)
+	ClientUser = userService.NewUserServiceClient(conn)
 }
