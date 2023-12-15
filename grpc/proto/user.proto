@@ -30,25 +30,33 @@ message LoginResponse{
   string tokenType = 3;
   int64 accessTokenExp = 4;
 }
-message TokenMessage{
+message UserInfoMessage {
+  int64 id = 1;
 }
-//message MemberMessage {
-//  int64 id = 1;
-//  string name = 2;
-//  string mobile = 3;
-//  string realname = 4;
-//  string account = 5;
-//  int32 status = 6;
-//  int64  lastLoginTime = 7;
-//  string address = 8;
-//  int32 province = 9;
-//  int32 city = 10;
-//  int32 area = 11;
-//  string email = 12;
-//}
+message UserInfoResponse {
+  int64 id = 1;
+  string name = 2;
+  string mobile = 3;
+  string realname = 4;
+  string account = 5;
+  int32 status = 6;
+  int64  lastLoginTime = 7;
+  string address = 8;
+  int32 province = 9;
+  int32 city = 10;
+  int32 area = 11;
+  string email = 12;
+}
+
+
+message TokenVerifyMessage{
+  string token = 1;
+}
 
 service UserService {
   rpc GetCaptcha(CaptchaMessage) returns (CaptchaResponse) {}
   rpc Register(RegisterMessage) returns (RegisterResponse) {}
   rpc Login(LoginMessage) returns (LoginResponse) {}
+  rpc verifyToken(TokenVerifyMessage) returns (UserInfoResponse) {}
+  rpc GetUserInfo(UserInfoMessage) returns (UserInfoResponse) {}
 }

@@ -1,9 +1,9 @@
 server:
-  name: "user"
-  addr: "0.0.0.0:8080"
+  name: "admin"
+  addr: "0.0.0.0:8081"
 grpc:
-  name: "user"
-  addr: "0.0.0.0:8881"
+  name: "admin"
+  addr: "0.0.0.0:8882"
   version: "1.0.0"
   weight: 2
 etcd:

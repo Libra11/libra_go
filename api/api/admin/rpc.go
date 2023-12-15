@@ -1,4 +1,4 @@
-package user
+package admin
 
 import (
 	"google.golang.org/grpc"
@@ -7,18 +7,18 @@ import (
 	"libra.com/api/config"
 	"libra.com/common/discovery"
 	"libra.com/common/logs"
-	userService "libra.com/grpc/service/user"
+	adminService "libra.com/grpc/service/admin"
 	"log"
 )
 
-var ClientUser userService.UserServiceClient
+var ClientAdmin adminService.AdminServiceClient
 
-func InitUserRpcClient() {
+func InitAdminRpcClient() {
 	etcdRegister := discovery.NewResolver(config.C.EC.Addrs, logs.LG)
 	resolver.Register(etcdRegister)
-	conn, err := grpc.Dial(etcdRegister.Scheme()+":///user", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial(etcdRegister.Scheme()+":///admin", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
-	ClientUser = userService.NewUserServiceClient(conn)
+	ClientAdmin = adminService.NewAdminServiceClient(conn)
 }

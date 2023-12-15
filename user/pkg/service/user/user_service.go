@@ -2,6 +2,7 @@ package user
 
 import (
 	"context"
+	"github.com/jinzhu/copier"
 	"github.com/redis/go-redis/v9"
 	"go.uber.org/zap"
 	"libra.com/common"
@@ -14,6 +15,7 @@ import (
 	"libra.com/user/internal/data/member"
 	"libra.com/user/internal/repo"
 	"libra.com/user/pkg/model"
+	"strconv"
 	"time"
 )
 
@@ -122,19 +124,67 @@ func (l *ServiceUser) Login(ctx context.Context, message *user.LoginMessage) (*u
 
 	accessConf := jwts.TokenConfig{
 		Val:    message.Name,
-		Exp:    time.Duration(config.C.JC.AccessExp * 3600 * 24 * 1000),
+		Exp:    time.Duration(config.C.JC.AccessExp) * time.Hour,
 		Secret: config.C.JC.AccessSecret,
 	}
 	refreshConf := jwts.TokenConfig{
 		Val:    message.Name,
-		Exp:    time.Duration(config.C.JC.RefreshExp * 3600 * 24 * 1000),
+		Exp:    time.Duration(config.C.JC.RefreshExp) * time.Hour,
 		Secret: config.C.JC.RefreshSecret,
 	}
-	jwtToken := jwts.CreateJwtToken(accessConf, refreshConf)
+	jwtToken := jwts.CreateJwtToken(accessConf, refreshConf, mem.Id)
 	return &user.LoginResponse{
 		AccessToken:    jwtToken.AccessToken,
 		RefreshToken:   jwtToken.RefreshToken,
 		AccessTokenExp: jwtToken.AccessExp,
 		TokenType:      "bearer",
 	}, nil
+}
+
+func (l *ServiceUser) VerifyToken(ctx context.Context, message *user.TokenVerifyMessage) (*user.UserInfoResponse, error) {
+	token := message.Token
+	if token == "" {
+		return nil, errs.GrpcErr(model.NoLogin)
+	}
+	parseToken, err := jwts.ParseToken(token, config.C.JC.AccessSecret)
+	if err != nil {
+		zap.L().Error("TokenVerify ParseToken err", zap.Error(err))
+		return nil, errs.GrpcErr(model.NoLogin)
+	}
+	memId, err := strconv.ParseInt(parseToken, 10, 64)
+	if err != nil {
+		zap.L().Error("TokenVerify ParseInt err", zap.Error(err))
+		return nil, errs.GrpcErr(model.NoLogin)
+	}
+	c, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+	mem, err := l.member.GetMemberInfo(c, memId)
+	if err != nil {
+		zap.L().Error("Login db GetUserInfo error", zap.Error(err))
+		return nil, errs.GrpcErr(model.GormGetError)
+	}
+	if mem == nil {
+		zap.L().Error("TokenVerify member is nil")
+		return nil, errs.GrpcErr(model.NoLogin)
+	}
+	memMsg := &user.UserInfoResponse{}
+	_ = copier.Copy(memMsg, mem)
+	return memMsg, nil
+}
+
+func (l *ServiceUser) GetUserInfo(ctx context.Context, message *user.UserInfoMessage) (*user.UserInfoResponse, error) {
+	memId := message.Id
+	mem, err := l.member.GetMemberInfo(ctx, memId)
+	if err != nil {
+		zap.L().Error("Login db GetUserInfo error", zap.Error(err))
+		return nil, errs.GrpcErr(model.GormGetError)
+	}
+	if mem == nil {
+		zap.L().Error("member is nil")
+		return nil, errs.GrpcErr(model.NoMember)
+	}
+
+	memMsg := &user.UserInfoResponse{}
+	_ = copier.Copy(memMsg, mem)
+	return memMsg, nil
 }

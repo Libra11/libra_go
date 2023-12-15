@@ -1,0 +1,15 @@
+syntax = "proto3";
+package admin;
+option go_package = ".;admin";
+
+
+message UserMessage {
+
+}
+message UserResponse{
+
+}
+
+service AdminService {
+  rpc GetUserInfo(UserMessage) returns (UserResponse) {}
+}

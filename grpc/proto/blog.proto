@@ -1,0 +1,14 @@
+syntax = "proto3";
+package blog;
+option go_package = ".;blog";
+
+message UserMessage {
+
+}
+message UserResponse{
+
+}
+
+service AdminService {
+  rpc GetUserInfo(UserMessage) returns (UserResponse) {}
+}

@@ -1,14 +1,21 @@
 package user
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"libra.com/api/middleware"
+	"libra.com/api/rpc"
+)
 
 type RouterUser struct {
 }
 
 func (*RouterUser) Route(r *gin.Engine) {
-	InitUserRpcClient()
+	rpc.InitUserRpcClient()
 	h := New()
-	r.POST("/project/login/getCaptcha", h.getCaptcha)
-	r.POST("/project/register", h.register)
-	r.POST("/project/login", h.login)
+	r.POST("/user/getCaptcha", h.getCaptcha)
+	r.POST("/user/register", h.register)
+	r.POST("/user/login", h.login)
+	group := r.Group("/user/getUserInfo")
+	group.Use(middleware.TokenVerify())
+	group.GET("/", h.getUserInfo)
 }

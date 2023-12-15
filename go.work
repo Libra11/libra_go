@@ -5,4 +5,6 @@ use (
 	./common
 	./grpc
 	./user
+	./admin
+	./blog
 )

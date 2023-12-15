@@ -16,4 +16,6 @@ var (
 	MobileExist        = errs.NewError(4006, "手机号已存在")
 	CaptchaExpire      = errs.NewError(4007, "验证码不存在或已过期")
 	AccountAndPwdError = errs.NewError(4008, "账号或密码错误")
+	NoLogin            = errs.NewError(4009, "用户未登录")
+	NoMember           = errs.NewError(4010, "用户不存在")
 )

@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/copier"
 	"libra.com/api/pkg/model/user"
+	"libra.com/api/rpc"
 	"libra.com/common"
 	"libra.com/common/errs"
 	userService "libra.com/grpc/service/user"
@@ -26,7 +27,7 @@ func (*HandlerUser) getCaptcha(r *gin.Context) {
 	err := r.ShouldBind(&body)
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-	rsp, err := ClientUser.GetCaptcha(ctx, &userService.CaptchaMessage{Mobile: body["mobile"]})
+	rsp, err := rpc.ClientUser.GetCaptcha(ctx, &userService.CaptchaMessage{Mobile: body["mobile"]})
 	if err != nil {
 		code, msg := errs.ParseGrpcError(err)
 		r.JSON(http.StatusOK, result.Fail(code, msg))
@@ -57,7 +58,7 @@ func (*HandlerUser) register(r *gin.Context) {
 		r.JSON(http.StatusOK, result.Fail(http.StatusBadRequest, "copy参数有误"))
 		return
 	}
-	_, err = ClientUser.Register(ctx, msg)
+	_, err = rpc.ClientUser.Register(ctx, msg)
 	if err != nil {
 		code, msg := errs.ParseGrpcError(err)
 		r.JSON(http.StatusOK, result.Fail(code, msg))
@@ -85,7 +86,7 @@ func (*HandlerUser) login(r *gin.Context) {
 	}
 	var rsp user.LoginResp
 	rspMsg := &userService.LoginResponse{}
-	rspMsg, err = ClientUser.Login(ctx, msg)
+	rspMsg, err = rpc.ClientUser.Login(ctx, msg)
 	if err != nil {
 		code, msg := errs.ParseGrpcError(err)
 		r.JSON(http.StatusOK, result.Fail(code, msg))
@@ -97,4 +98,18 @@ func (*HandlerUser) login(r *gin.Context) {
 		return
 	}
 	r.JSON(200, result.Success(rsp))
+}
+
+func (*HandlerUser) getUserInfo(ctx *gin.Context) {
+	result := common.Result{}
+	msg := &userService.UserInfoMessage{
+		Id: ctx.GetInt64("memberId"),
+	}
+	info, err := rpc.ClientUser.GetUserInfo(ctx, msg)
+	if err != nil {
+		code, msg := errs.ParseGrpcError(err)
+		ctx.JSON(http.StatusOK, result.Fail(code, msg))
+		return
+	}
+	ctx.JSON(http.StatusOK, result.Success(info))
 }
