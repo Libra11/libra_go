@@ -41,7 +41,7 @@ func InitGRPCServer() *grpc.Server {
 	c := &gRPCConfig{
 		Addr: config.C.GC.Addr,
 		RegisterFunc: func(s *grpc.Server) {
-			blog.RegisterAdminServiceServer(s, blogService.New())
+			blog.RegisterBlogServiceServer(s, blogService.New())
 		},
 	}
 	s := grpc.NewServer()
