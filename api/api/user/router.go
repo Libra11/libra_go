@@ -12,10 +12,14 @@ type RouterUser struct {
 func (*RouterUser) Route(r *gin.Engine) {
 	rpc.InitUserRpcClient()
 	h := New()
-	r.POST("/user/getCaptcha", h.getCaptcha)
-	r.POST("/user/register", h.register)
-	r.POST("/user/login", h.login)
-	group := r.Group("/user/getUserInfo")
-	group.Use(middleware.TokenVerify())
-	group.GET("/", h.getUserInfo)
+	// 路由组1: 不需要token验证
+	group1 := r.Group("/user")
+	group1.POST("/getCaptcha", h.getCaptcha)
+	group1.POST("/register", h.register)
+	group1.POST("/login", h.login)
+
+	// 路由组2: 需要token验证
+	group2 := r.Group("/user")
+	group2.Use(middleware.TokenVerify()) // 使用TokenVerify中间件
+	group2.GET("/getUserInfo", h.getUserInfo)
 }

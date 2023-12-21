@@ -1,6 +1,6 @@
 server:
   name: "api"
-  addr: "localhost:80"
+  addr: "localhost:9090"
 etcd:
   addrs:
     - "localhost:2379"

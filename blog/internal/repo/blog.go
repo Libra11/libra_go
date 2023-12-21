@@ -11,7 +11,7 @@ type BlogRepo interface {
 	GetAllCategory(ctx context.Context) ([]*blogs.Category, error)
 	DeleteTag(ctx context.Context, id int64) error
 	DeleteCategory(ctx context.Context, id int64) error
-	AddTag(ctx context.Context, tag *blogs.Tag) error
-	AddCategory(ctx context.Context, category *blogs.Category) error
+	AddTag(ctx context.Context, tag *blogs.Tag) (int64, error)
+	AddCategory(ctx context.Context, category *blogs.Category) (int64, error)
 	AddBlog(ctx context.Context, blog *blogs.Blog) error
 }

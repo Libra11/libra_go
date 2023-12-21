@@ -17,6 +17,7 @@ type Config struct {
 	EC    *EtcdConfig
 	MC    *MysqlConfig
 	JC    *JwtConfig
+	AC    *AliyunOssConfig
 }
 
 type ServerConfig struct {
@@ -50,6 +51,15 @@ type JwtConfig struct {
 	RefreshSecret string
 }
 
+type AliyunOssConfig struct {
+	Id         string
+	Secret     string
+	Regin      string
+	RoleArn    string
+	BucketName string
+	EndPoint   string
+}
+
 func InitConfig() *Config {
 	v := viper.New()
 	conf := &Config{viper: v}
@@ -69,6 +79,8 @@ func InitConfig() *Config {
 	conf.InitEtcdConfig()
 	conf.InitMysqlConfig()
 	conf.InitJwtConfig()
+	conf.InitZapLog()
+	conf.InitAliyunOssConfig()
 	return conf
 }
 
@@ -145,4 +157,16 @@ func (c *Config) InitJwtConfig() {
 		RefreshSecret: c.viper.GetString("jwt.refreshSecret"),
 	}
 	c.JC = jc
+}
+
+func (c *Config) InitAliyunOssConfig() {
+	ac := &AliyunOssConfig{
+		Id:         c.viper.GetString("aliyunOss.id"),
+		Secret:     c.viper.GetString("aliyunOss.secret"),
+		Regin:      c.viper.GetString("aliyunOss.regin"),
+		RoleArn:    c.viper.GetString("aliyunOss.roleArn"),
+		BucketName: c.viper.GetString("aliyunOss.bucketName"),
+		EndPoint:   c.viper.GetString("aliyunOss.endPoint"),
+	}
+	c.AC = ac
 }

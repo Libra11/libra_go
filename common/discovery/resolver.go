@@ -47,7 +47,7 @@ func (r *Resolver) Scheme() string {
 // Build creates a new resolver.Resolver for the given target
 func (r *Resolver) Build(target resolver.Target, cc resolver.ClientConn, opts resolver.BuildOptions) (resolver.Resolver, error) {
 	r.cc = cc
-	//r.keyPrifix = BuildPrefix(Server{Name: target.URL.Path})
+	r.keyPrifix = BuildPrefix(Server{Name: target.URL.Path[1:]})
 	if _, err := r.start(); err != nil {
 		return nil, err
 	}

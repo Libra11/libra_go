@@ -1,7 +1,11 @@
 package model
 
+import "libra.com/common/errs"
+
 var (
-// RedisGetError = errs.NewError(1000, "redis错误")
-// GormGetError  = errs.NewError(1001, "数据库读取失败")
-// GormSetError  = errs.NewError(1002, "数据库存储失败")
+	GormGetError    = errs.NewError(1001, "数据库读取失败")
+	GormSetError    = errs.NewError(1002, "数据库存储失败")
+	GormDeleteError = errs.NewError(1003, "数据库删除失败")
+
+	OssError = errs.NewError(2000, "oss错误")
 )

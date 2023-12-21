@@ -10,12 +10,20 @@ type BlogDao struct {
 	conn *gorms.GormConn
 }
 
-func (b BlogDao) AddTag(ctx context.Context, tag *blogs.Tag) error {
-	return b.conn.Session(ctx).Save(tag).Error
+func (b BlogDao) AddTag(ctx context.Context, tag *blogs.Tag) (int64, error) {
+	err := b.conn.Session(ctx).Save(tag).Error
+	if err != nil {
+		return 0, err
+	}
+	return tag.Id, nil
 }
 
-func (b BlogDao) AddCategory(ctx context.Context, category *blogs.Category) error {
-	return b.conn.Session(ctx).Save(category).Error
+func (b BlogDao) AddCategory(ctx context.Context, category *blogs.Category) (int64, error) {
+	err := b.conn.Session(ctx).Save(category).Error
+	if err != nil {
+		return 0, err
+	}
+	return category.Id, nil
 }
 
 func (b BlogDao) DeleteTag(ctx context.Context, id int64) error {
@@ -32,33 +40,25 @@ func (b BlogDao) GetBlogById(ctx context.Context, id int64) (*blogs.Blog, error)
 }
 
 func (b BlogDao) GetAllTags(ctx context.Context) ([]*blogs.Tag, error) {
-	result := b.conn.Session(ctx).Find(&blogs.Tag{})
+	var tags []*blogs.Tag
+	result := b.conn.Session(ctx).Find(&tags)
 	if err := result.Error; err != nil {
 		return nil, err
 	}
 	if result.RowsAffected == 0 {
 		return nil, nil
-	}
-	var tags []*blogs.Tag
-	err := result.Scan(&tags)
-	if err.Error != nil {
-		return nil, err.Error
 	}
 	return tags, nil
 }
 
 func (b BlogDao) GetAllCategory(ctx context.Context) ([]*blogs.Category, error) {
-	result := b.conn.Session(ctx).Find(&blogs.Category{})
+	var category []*blogs.Category
+	result := b.conn.Session(ctx).Find(&category)
 	if err := result.Error; err != nil {
 		return nil, err
 	}
 	if result.RowsAffected == 0 {
 		return nil, nil
-	}
-	var category []*blogs.Category
-	err := result.Scan(&category)
-	if err.Error != nil {
-		return nil, err.Error
 	}
 	return category, nil
 }

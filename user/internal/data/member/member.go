@@ -1,7 +1,7 @@
 package member
 
 type Member struct {
-	Id            int64
+	Id            int64 `gorm:"primary_key"`
 	Account       string
 	Password      string
 	Name          string

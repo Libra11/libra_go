@@ -20,14 +20,17 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type UserMessage struct {
+type Tags struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	Id   int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 }
 
-func (x *UserMessage) Reset() {
-	*x = UserMessage{}
+func (x *Tags) Reset() {
+	*x = Tags{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_blog_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -35,13 +38,13 @@ func (x *UserMessage) Reset() {
 	}
 }
 
-func (x *UserMessage) String() string {
+func (x *Tags) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserMessage) ProtoMessage() {}
+func (*Tags) ProtoMessage() {}
 
-func (x *UserMessage) ProtoReflect() protoreflect.Message {
+func (x *Tags) ProtoReflect() protoreflect.Message {
 	mi := &file_blog_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,19 +56,33 @@ func (x *UserMessage) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserMessage.ProtoReflect.Descriptor instead.
-func (*UserMessage) Descriptor() ([]byte, []int) {
+// Deprecated: Use Tags.ProtoReflect.Descriptor instead.
+func (*Tags) Descriptor() ([]byte, []int) {
 	return file_blog_proto_rawDescGZIP(), []int{0}
 }
 
-type UserResponse struct {
+func (x *Tags) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Tags) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type GetAllTagsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *UserResponse) Reset() {
-	*x = UserResponse{}
+func (x *GetAllTagsRequest) Reset() {
+	*x = GetAllTagsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_blog_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -73,13 +90,13 @@ func (x *UserResponse) Reset() {
 	}
 }
 
-func (x *UserResponse) String() string {
+func (x *GetAllTagsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserResponse) ProtoMessage() {}
+func (*GetAllTagsRequest) ProtoMessage() {}
 
-func (x *UserResponse) ProtoReflect() protoreflect.Message {
+func (x *GetAllTagsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_blog_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -91,23 +108,1034 @@ func (x *UserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserResponse.ProtoReflect.Descriptor instead.
-func (*UserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetAllTagsRequest.ProtoReflect.Descriptor instead.
+func (*GetAllTagsRequest) Descriptor() ([]byte, []int) {
 	return file_blog_proto_rawDescGZIP(), []int{1}
+}
+
+type GetAllTagsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Tags []*Tags `protobuf:"bytes,1,rep,name=tags,proto3" json:"tags,omitempty"`
+}
+
+func (x *GetAllTagsResponse) Reset() {
+	*x = GetAllTagsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllTagsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllTagsResponse) ProtoMessage() {}
+
+func (x *GetAllTagsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllTagsResponse.ProtoReflect.Descriptor instead.
+func (*GetAllTagsResponse) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetAllTagsResponse) GetTags() []*Tags {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+type Category struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id   int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *Category) Reset() {
+	*x = Category{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Category) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Category) ProtoMessage() {}
+
+func (x *Category) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Category.ProtoReflect.Descriptor instead.
+func (*Category) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Category) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Category) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type GetAllCategoryRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *GetAllCategoryRequest) Reset() {
+	*x = GetAllCategoryRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllCategoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllCategoryRequest) ProtoMessage() {}
+
+func (x *GetAllCategoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllCategoryRequest.ProtoReflect.Descriptor instead.
+func (*GetAllCategoryRequest) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{4}
+}
+
+type GetAllCategoryResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Category []*Category `protobuf:"bytes,1,rep,name=category,proto3" json:"category,omitempty"`
+}
+
+func (x *GetAllCategoryResponse) Reset() {
+	*x = GetAllCategoryResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllCategoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllCategoryResponse) ProtoMessage() {}
+
+func (x *GetAllCategoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllCategoryResponse.ProtoReflect.Descriptor instead.
+func (*GetAllCategoryResponse) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetAllCategoryResponse) GetCategory() []*Category {
+	if x != nil {
+		return x.Category
+	}
+	return nil
+}
+
+type AddTagRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Tag *Tags `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+}
+
+func (x *AddTagRequest) Reset() {
+	*x = AddTagRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddTagRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddTagRequest) ProtoMessage() {}
+
+func (x *AddTagRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddTagRequest.ProtoReflect.Descriptor instead.
+func (*AddTagRequest) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *AddTagRequest) GetTag() *Tags {
+	if x != nil {
+		return x.Tag
+	}
+	return nil
+}
+
+type AddTagResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *AddTagResponse) Reset() {
+	*x = AddTagResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddTagResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddTagResponse) ProtoMessage() {}
+
+func (x *AddTagResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddTagResponse.ProtoReflect.Descriptor instead.
+func (*AddTagResponse) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *AddTagResponse) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type AddCategoryRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Category *Category `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
+}
+
+func (x *AddCategoryRequest) Reset() {
+	*x = AddCategoryRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddCategoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddCategoryRequest) ProtoMessage() {}
+
+func (x *AddCategoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddCategoryRequest.ProtoReflect.Descriptor instead.
+func (*AddCategoryRequest) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *AddCategoryRequest) GetCategory() *Category {
+	if x != nil {
+		return x.Category
+	}
+	return nil
+}
+
+type AddCategoryResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *AddCategoryResponse) Reset() {
+	*x = AddCategoryResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddCategoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddCategoryResponse) ProtoMessage() {}
+
+func (x *AddCategoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddCategoryResponse.ProtoReflect.Descriptor instead.
+func (*AddCategoryResponse) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *AddCategoryResponse) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type DeleteCategoryRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *DeleteCategoryRequest) Reset() {
+	*x = DeleteCategoryRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteCategoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCategoryRequest) ProtoMessage() {}
+
+func (x *DeleteCategoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCategoryRequest.ProtoReflect.Descriptor instead.
+func (*DeleteCategoryRequest) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *DeleteCategoryRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type DeleteCategoryResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DeleteCategoryResponse) Reset() {
+	*x = DeleteCategoryResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteCategoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCategoryResponse) ProtoMessage() {}
+
+func (x *DeleteCategoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCategoryResponse.ProtoReflect.Descriptor instead.
+func (*DeleteCategoryResponse) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{11}
+}
+
+type DeleteTagRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *DeleteTagRequest) Reset() {
+	*x = DeleteTagRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteTagRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteTagRequest) ProtoMessage() {}
+
+func (x *DeleteTagRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteTagRequest.ProtoReflect.Descriptor instead.
+func (*DeleteTagRequest) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *DeleteTagRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type DeleteTagResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DeleteTagResponse) Reset() {
+	*x = DeleteTagResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteTagResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteTagResponse) ProtoMessage() {}
+
+func (x *DeleteTagResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteTagResponse.ProtoReflect.Descriptor instead.
+func (*DeleteTagResponse) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{13}
+}
+
+type Blog struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id        int64       `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title     string      `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Content   string      `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
+	Desc      string      `protobuf:"bytes,4,opt,name=desc,proto3" json:"desc,omitempty"`
+	Author    string      `protobuf:"bytes,5,opt,name=author,proto3" json:"author,omitempty"`
+	Tags      []*Tags     `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+	Category  []*Category `protobuf:"bytes,7,rep,name=category,proto3" json:"category,omitempty"`
+	CreateAt  int64       `protobuf:"varint,8,opt,name=createAt,proto3" json:"createAt,omitempty"`
+	UpdateAt  int64       `protobuf:"varint,9,opt,name=updateAt,proto3" json:"updateAt,omitempty"`
+	ImgUrl    string      `protobuf:"bytes,10,opt,name=imgUrl,proto3" json:"imgUrl,omitempty"`
+	AudioFile string      `protobuf:"bytes,11,opt,name=audioFile,proto3" json:"audioFile,omitempty"`
+}
+
+func (x *Blog) Reset() {
+	*x = Blog{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Blog) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Blog) ProtoMessage() {}
+
+func (x *Blog) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Blog.ProtoReflect.Descriptor instead.
+func (*Blog) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *Blog) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Blog) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Blog) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *Blog) GetDesc() string {
+	if x != nil {
+		return x.Desc
+	}
+	return ""
+}
+
+func (x *Blog) GetAuthor() string {
+	if x != nil {
+		return x.Author
+	}
+	return ""
+}
+
+func (x *Blog) GetTags() []*Tags {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *Blog) GetCategory() []*Category {
+	if x != nil {
+		return x.Category
+	}
+	return nil
+}
+
+func (x *Blog) GetCreateAt() int64 {
+	if x != nil {
+		return x.CreateAt
+	}
+	return 0
+}
+
+func (x *Blog) GetUpdateAt() int64 {
+	if x != nil {
+		return x.UpdateAt
+	}
+	return 0
+}
+
+func (x *Blog) GetImgUrl() string {
+	if x != nil {
+		return x.ImgUrl
+	}
+	return ""
+}
+
+func (x *Blog) GetAudioFile() string {
+	if x != nil {
+		return x.AudioFile
+	}
+	return ""
+}
+
+type AddBlogRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Blog *Blog `protobuf:"bytes,1,opt,name=blog,proto3" json:"blog,omitempty"`
+}
+
+func (x *AddBlogRequest) Reset() {
+	*x = AddBlogRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddBlogRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddBlogRequest) ProtoMessage() {}
+
+func (x *AddBlogRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddBlogRequest.ProtoReflect.Descriptor instead.
+func (*AddBlogRequest) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *AddBlogRequest) GetBlog() *Blog {
+	if x != nil {
+		return x.Blog
+	}
+	return nil
+}
+
+type AddBlogResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddBlogResponse) Reset() {
+	*x = AddBlogResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddBlogResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddBlogResponse) ProtoMessage() {}
+
+func (x *AddBlogResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddBlogResponse.ProtoReflect.Descriptor instead.
+func (*AddBlogResponse) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{16}
+}
+
+type GetOssTokenRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *GetOssTokenRequest) Reset() {
+	*x = GetOssTokenRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOssTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOssTokenRequest) ProtoMessage() {}
+
+func (x *GetOssTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOssTokenRequest.ProtoReflect.Descriptor instead.
+func (*GetOssTokenRequest) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{17}
+}
+
+type GetOssTokenResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AccessId        string `protobuf:"bytes,1,opt,name=accessId,proto3" json:"accessId,omitempty"`
+	Policy          string `protobuf:"bytes,2,opt,name=policy,proto3" json:"policy,omitempty"`
+	Signature       string `protobuf:"bytes,3,opt,name=signature,proto3" json:"signature,omitempty"`
+	Expire          string `protobuf:"bytes,4,opt,name=expire,proto3" json:"expire,omitempty"`
+	Dir             string `protobuf:"bytes,5,opt,name=dir,proto3" json:"dir,omitempty"`
+	Host            string `protobuf:"bytes,6,opt,name=host,proto3" json:"host,omitempty"`
+	AccessKeySecret string `protobuf:"bytes,7,opt,name=accessKeySecret,proto3" json:"accessKeySecret,omitempty"`
+	SecurityToken   string `protobuf:"bytes,8,opt,name=securityToken,proto3" json:"securityToken,omitempty"`
+	Expiration      string `protobuf:"bytes,9,opt,name=expiration,proto3" json:"expiration,omitempty"`
+}
+
+func (x *GetOssTokenResponse) Reset() {
+	*x = GetOssTokenResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_blog_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOssTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOssTokenResponse) ProtoMessage() {}
+
+func (x *GetOssTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blog_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOssTokenResponse.ProtoReflect.Descriptor instead.
+func (*GetOssTokenResponse) Descriptor() ([]byte, []int) {
+	return file_blog_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *GetOssTokenResponse) GetAccessId() string {
+	if x != nil {
+		return x.AccessId
+	}
+	return ""
+}
+
+func (x *GetOssTokenResponse) GetPolicy() string {
+	if x != nil {
+		return x.Policy
+	}
+	return ""
+}
+
+func (x *GetOssTokenResponse) GetSignature() string {
+	if x != nil {
+		return x.Signature
+	}
+	return ""
+}
+
+func (x *GetOssTokenResponse) GetExpire() string {
+	if x != nil {
+		return x.Expire
+	}
+	return ""
+}
+
+func (x *GetOssTokenResponse) GetDir() string {
+	if x != nil {
+		return x.Dir
+	}
+	return ""
+}
+
+func (x *GetOssTokenResponse) GetHost() string {
+	if x != nil {
+		return x.Host
+	}
+	return ""
+}
+
+func (x *GetOssTokenResponse) GetAccessKeySecret() string {
+	if x != nil {
+		return x.AccessKeySecret
+	}
+	return ""
+}
+
+func (x *GetOssTokenResponse) GetSecurityToken() string {
+	if x != nil {
+		return x.SecurityToken
+	}
+	return ""
+}
+
+func (x *GetOssTokenResponse) GetExpiration() string {
+	if x != nil {
+		return x.Expiration
+	}
+	return ""
 }
 
 var File_blog_proto protoreflect.FileDescriptor
 
 var file_blog_proto_rawDesc = []byte{
 	0x0a, 0x0a, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04, 0x62, 0x6c,
-	0x6f, 0x67, 0x22, 0x0d, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
-	0x65, 0x22, 0x0e, 0x0a, 0x0c, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x32, 0x46, 0x0a, 0x0c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x12, 0x36, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f,
-	0x12, 0x11, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x73, 0x73,
-	0x61, 0x67, 0x65, 0x1a, 0x12, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x3b, 0x62,
-	0x6c, 0x6f, 0x67, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x67, 0x22, 0x2a, 0x0a, 0x04, 0x54, 0x61, 0x67, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x13,
+	0x0a, 0x11, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x54, 0x61, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x22, 0x34, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x54, 0x61, 0x67,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x04, 0x74, 0x61, 0x67,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x54,
+	0x61, 0x67, 0x73, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x22, 0x2e, 0x0a, 0x08, 0x43, 0x61, 0x74,
+	0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x17, 0x0a, 0x15, 0x47, 0x65, 0x74,
+	0x41, 0x6c, 0x6c, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x22, 0x44, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x43, 0x61, 0x74, 0x65,
+	0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x08,
+	0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0e,
+	0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x08,
+	0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x22, 0x2d, 0x0a, 0x0d, 0x41, 0x64, 0x64, 0x54,
+	0x61, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x03, 0x74, 0x61, 0x67,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x54, 0x61,
+	0x67, 0x73, 0x52, 0x03, 0x74, 0x61, 0x67, 0x22, 0x20, 0x0a, 0x0e, 0x41, 0x64, 0x64, 0x54, 0x61,
+	0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x40, 0x0a, 0x12, 0x41, 0x64, 0x64,
+	0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x2a, 0x0a, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x0e, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72,
+	0x79, 0x52, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x22, 0x25, 0x0a, 0x13, 0x41,
+	0x64, 0x64, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02,
+	0x69, 0x64, 0x22, 0x27, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x74, 0x65,
+	0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x18, 0x0a, 0x16, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x22, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54,
+	0x61, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x13, 0x0a, 0x11, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xac,
+	0x02, 0x0a, 0x04, 0x42, 0x6c, 0x6f, 0x67, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x18, 0x0a,
+	0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
+	0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x65, 0x73, 0x63, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x65, 0x73, 0x63, 0x12, 0x16, 0x0a, 0x06, 0x61,
+	0x75, 0x74, 0x68, 0x6f, 0x72, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x75, 0x74,
+	0x68, 0x6f, 0x72, 0x12, 0x1e, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x06, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x0a, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x54, 0x61, 0x67, 0x73, 0x52, 0x04, 0x74,
+	0x61, 0x67, 0x73, 0x12, 0x2a, 0x0a, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x18,
+	0x07, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x43, 0x61, 0x74,
+	0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x12,
+	0x1a, 0x0a, 0x08, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x08, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x69, 0x6d, 0x67, 0x55, 0x72,
+	0x6c, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x69, 0x6d, 0x67, 0x55, 0x72, 0x6c, 0x12,
+	0x1c, 0x0a, 0x09, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x18, 0x0b, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x22, 0x30, 0x0a,
+	0x0e, 0x41, 0x64, 0x64, 0x42, 0x6c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x1e, 0x0a, 0x04, 0x62, 0x6c, 0x6f, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e,
+	0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x42, 0x6c, 0x6f, 0x67, 0x52, 0x04, 0x62, 0x6c, 0x6f, 0x67, 0x22,
+	0x11, 0x0a, 0x0f, 0x41, 0x64, 0x64, 0x42, 0x6c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x4f, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x95, 0x02, 0x0a, 0x13, 0x47, 0x65, 0x74,
+	0x4f, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x1a, 0x0a, 0x08, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x08, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06,
+	0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x70, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x12, 0x1c, 0x0a, 0x09, 0x73, 0x69, 0x67, 0x6e, 0x61, 0x74, 0x75, 0x72,
+	0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x69, 0x67, 0x6e, 0x61, 0x74, 0x75,
+	0x72, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x65, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x64, 0x69,
+	0x72, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64, 0x69, 0x72, 0x12, 0x12, 0x0a, 0x04,
+	0x68, 0x6f, 0x73, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x68, 0x6f, 0x73, 0x74,
+	0x12, 0x28, 0x0a, 0x0f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4b, 0x65, 0x79, 0x53, 0x65, 0x63,
+	0x72, 0x65, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x61, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x4b, 0x65, 0x79, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x73, 0x65,
+	0x63, 0x75, 0x72, 0x69, 0x74, 0x79, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x08, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0d, 0x73, 0x65, 0x63, 0x75, 0x72, 0x69, 0x74, 0x79, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
+	0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x78, 0x70, 0x69, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x09,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x78, 0x70, 0x69, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x32, 0x9b, 0x04, 0x0a, 0x0b, 0x42, 0x6c, 0x6f, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x12, 0x3f, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x54, 0x61, 0x67, 0x73, 0x12, 0x17,
+	0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x54, 0x61, 0x67, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x47,
+	0x65, 0x74, 0x41, 0x6c, 0x6c, 0x54, 0x61, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x4b, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x43, 0x61, 0x74, 0x65, 0x67,
+	0x6f, 0x72, 0x79, 0x12, 0x1b, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c,
+	0x6c, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x1c, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x43, 0x61,
+	0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4b,
+	0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79,
+	0x12, 0x1b, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61,
+	0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e,
+	0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67,
+	0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x09, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61, 0x67, 0x12, 0x16, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x17, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61,
+	0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x33, 0x0a, 0x06, 0x41, 0x64, 0x64,
+	0x54, 0x61, 0x67, 0x12, 0x13, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x61,
+	0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e,
+	0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42,
+	0x0a, 0x0b, 0x41, 0x64, 0x64, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x18, 0x2e,
+	0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x41,
+	0x64, 0x64, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x36, 0x0a, 0x07, 0x41, 0x64, 0x64, 0x42, 0x6c, 0x6f, 0x67, 0x12, 0x14, 0x2e,
+	0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x41, 0x64, 0x64, 0x42, 0x6c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x41, 0x64, 0x64, 0x42, 0x6c,
+	0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x0b, 0x47, 0x65,
+	0x74, 0x4f, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x18, 0x2e, 0x62, 0x6c, 0x6f, 0x67,
+	0x2e, 0x47, 0x65, 0x74, 0x4f, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x62, 0x6c, 0x6f, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x73,
+	0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x08,
+	0x5a, 0x06, 0x2e, 0x3b, 0x62, 0x6c, 0x6f, 0x67, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -122,19 +1150,57 @@ func file_blog_proto_rawDescGZIP() []byte {
 	return file_blog_proto_rawDescData
 }
 
-var file_blog_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_blog_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_blog_proto_goTypes = []interface{}{
-	(*UserMessage)(nil),  // 0: blog.UserMessage
-	(*UserResponse)(nil), // 1: blog.UserResponse
+	(*Tags)(nil),                   // 0: blog.Tags
+	(*GetAllTagsRequest)(nil),      // 1: blog.GetAllTagsRequest
+	(*GetAllTagsResponse)(nil),     // 2: blog.GetAllTagsResponse
+	(*Category)(nil),               // 3: blog.Category
+	(*GetAllCategoryRequest)(nil),  // 4: blog.GetAllCategoryRequest
+	(*GetAllCategoryResponse)(nil), // 5: blog.GetAllCategoryResponse
+	(*AddTagRequest)(nil),          // 6: blog.AddTagRequest
+	(*AddTagResponse)(nil),         // 7: blog.AddTagResponse
+	(*AddCategoryRequest)(nil),     // 8: blog.AddCategoryRequest
+	(*AddCategoryResponse)(nil),    // 9: blog.AddCategoryResponse
+	(*DeleteCategoryRequest)(nil),  // 10: blog.DeleteCategoryRequest
+	(*DeleteCategoryResponse)(nil), // 11: blog.DeleteCategoryResponse
+	(*DeleteTagRequest)(nil),       // 12: blog.DeleteTagRequest
+	(*DeleteTagResponse)(nil),      // 13: blog.DeleteTagResponse
+	(*Blog)(nil),                   // 14: blog.Blog
+	(*AddBlogRequest)(nil),         // 15: blog.AddBlogRequest
+	(*AddBlogResponse)(nil),        // 16: blog.AddBlogResponse
+	(*GetOssTokenRequest)(nil),     // 17: blog.GetOssTokenRequest
+	(*GetOssTokenResponse)(nil),    // 18: blog.GetOssTokenResponse
 }
 var file_blog_proto_depIdxs = []int32{
-	0, // 0: blog.AdminService.GetUserInfo:input_type -> blog.UserMessage
-	1, // 1: blog.AdminService.GetUserInfo:output_type -> blog.UserResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: blog.GetAllTagsResponse.tags:type_name -> blog.Tags
+	3,  // 1: blog.GetAllCategoryResponse.category:type_name -> blog.Category
+	0,  // 2: blog.AddTagRequest.tag:type_name -> blog.Tags
+	3,  // 3: blog.AddCategoryRequest.category:type_name -> blog.Category
+	0,  // 4: blog.Blog.tags:type_name -> blog.Tags
+	3,  // 5: blog.Blog.category:type_name -> blog.Category
+	14, // 6: blog.AddBlogRequest.blog:type_name -> blog.Blog
+	1,  // 7: blog.BlogService.GetAllTags:input_type -> blog.GetAllTagsRequest
+	4,  // 8: blog.BlogService.GetAllCategory:input_type -> blog.GetAllCategoryRequest
+	10, // 9: blog.BlogService.DeleteCategory:input_type -> blog.DeleteCategoryRequest
+	12, // 10: blog.BlogService.DeleteTag:input_type -> blog.DeleteTagRequest
+	6,  // 11: blog.BlogService.AddTag:input_type -> blog.AddTagRequest
+	8,  // 12: blog.BlogService.AddCategory:input_type -> blog.AddCategoryRequest
+	15, // 13: blog.BlogService.AddBlog:input_type -> blog.AddBlogRequest
+	17, // 14: blog.BlogService.GetOssToken:input_type -> blog.GetOssTokenRequest
+	2,  // 15: blog.BlogService.GetAllTags:output_type -> blog.GetAllTagsResponse
+	5,  // 16: blog.BlogService.GetAllCategory:output_type -> blog.GetAllCategoryResponse
+	11, // 17: blog.BlogService.DeleteCategory:output_type -> blog.DeleteCategoryResponse
+	13, // 18: blog.BlogService.DeleteTag:output_type -> blog.DeleteTagResponse
+	7,  // 19: blog.BlogService.AddTag:output_type -> blog.AddTagResponse
+	9,  // 20: blog.BlogService.AddCategory:output_type -> blog.AddCategoryResponse
+	16, // 21: blog.BlogService.AddBlog:output_type -> blog.AddBlogResponse
+	18, // 22: blog.BlogService.GetOssToken:output_type -> blog.GetOssTokenResponse
+	15, // [15:23] is the sub-list for method output_type
+	7,  // [7:15] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_blog_proto_init() }
@@ -144,7 +1210,7 @@ func file_blog_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_blog_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UserMessage); i {
+			switch v := v.(*Tags); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -156,7 +1222,211 @@ func file_blog_proto_init() {
 			}
 		}
 		file_blog_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UserResponse); i {
+			switch v := v.(*GetAllTagsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAllTagsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Category); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAllCategoryRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAllCategoryResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddTagRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddTagResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddCategoryRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddCategoryResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteCategoryRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteCategoryResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteTagRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteTagResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Blog); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddBlogRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddBlogResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetOssTokenRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_blog_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetOssTokenResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -174,7 +1444,7 @@ func file_blog_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_blog_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

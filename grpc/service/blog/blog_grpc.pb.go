@@ -18,86 +18,338 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// AdminServiceClient is the client API for AdminService service.
+// BlogServiceClient is the client API for BlogService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AdminServiceClient interface {
-	GetUserInfo(ctx context.Context, in *UserMessage, opts ...grpc.CallOption) (*UserResponse, error)
+type BlogServiceClient interface {
+	GetAllTags(ctx context.Context, in *GetAllTagsRequest, opts ...grpc.CallOption) (*GetAllTagsResponse, error)
+	GetAllCategory(ctx context.Context, in *GetAllCategoryRequest, opts ...grpc.CallOption) (*GetAllCategoryResponse, error)
+	DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, opts ...grpc.CallOption) (*DeleteCategoryResponse, error)
+	DeleteTag(ctx context.Context, in *DeleteTagRequest, opts ...grpc.CallOption) (*DeleteTagResponse, error)
+	AddTag(ctx context.Context, in *AddTagRequest, opts ...grpc.CallOption) (*AddTagResponse, error)
+	AddCategory(ctx context.Context, in *AddCategoryRequest, opts ...grpc.CallOption) (*AddCategoryResponse, error)
+	AddBlog(ctx context.Context, in *AddBlogRequest, opts ...grpc.CallOption) (*AddBlogResponse, error)
+	GetOssToken(ctx context.Context, in *GetOssTokenRequest, opts ...grpc.CallOption) (*GetOssTokenResponse, error)
 }
 
-type adminServiceClient struct {
+type blogServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAdminServiceClient(cc grpc.ClientConnInterface) AdminServiceClient {
-	return &adminServiceClient{cc}
+func NewBlogServiceClient(cc grpc.ClientConnInterface) BlogServiceClient {
+	return &blogServiceClient{cc}
 }
 
-func (c *adminServiceClient) GetUserInfo(ctx context.Context, in *UserMessage, opts ...grpc.CallOption) (*UserResponse, error) {
-	out := new(UserResponse)
-	err := c.cc.Invoke(ctx, "/blog.AdminService/GetUserInfo", in, out, opts...)
+func (c *blogServiceClient) GetAllTags(ctx context.Context, in *GetAllTagsRequest, opts ...grpc.CallOption) (*GetAllTagsResponse, error) {
+	out := new(GetAllTagsResponse)
+	err := c.cc.Invoke(ctx, "/blog.BlogService/GetAllTags", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// AdminServiceServer is the server API for AdminService service.
-// All implementations must embed UnimplementedAdminServiceServer
+func (c *blogServiceClient) GetAllCategory(ctx context.Context, in *GetAllCategoryRequest, opts ...grpc.CallOption) (*GetAllCategoryResponse, error) {
+	out := new(GetAllCategoryResponse)
+	err := c.cc.Invoke(ctx, "/blog.BlogService/GetAllCategory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blogServiceClient) DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, opts ...grpc.CallOption) (*DeleteCategoryResponse, error) {
+	out := new(DeleteCategoryResponse)
+	err := c.cc.Invoke(ctx, "/blog.BlogService/DeleteCategory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blogServiceClient) DeleteTag(ctx context.Context, in *DeleteTagRequest, opts ...grpc.CallOption) (*DeleteTagResponse, error) {
+	out := new(DeleteTagResponse)
+	err := c.cc.Invoke(ctx, "/blog.BlogService/DeleteTag", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blogServiceClient) AddTag(ctx context.Context, in *AddTagRequest, opts ...grpc.CallOption) (*AddTagResponse, error) {
+	out := new(AddTagResponse)
+	err := c.cc.Invoke(ctx, "/blog.BlogService/AddTag", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blogServiceClient) AddCategory(ctx context.Context, in *AddCategoryRequest, opts ...grpc.CallOption) (*AddCategoryResponse, error) {
+	out := new(AddCategoryResponse)
+	err := c.cc.Invoke(ctx, "/blog.BlogService/AddCategory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blogServiceClient) AddBlog(ctx context.Context, in *AddBlogRequest, opts ...grpc.CallOption) (*AddBlogResponse, error) {
+	out := new(AddBlogResponse)
+	err := c.cc.Invoke(ctx, "/blog.BlogService/AddBlog", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blogServiceClient) GetOssToken(ctx context.Context, in *GetOssTokenRequest, opts ...grpc.CallOption) (*GetOssTokenResponse, error) {
+	out := new(GetOssTokenResponse)
+	err := c.cc.Invoke(ctx, "/blog.BlogService/GetOssToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// BlogServiceServer is the server API for BlogService service.
+// All implementations must embed UnimplementedBlogServiceServer
 // for forward compatibility
-type AdminServiceServer interface {
-	GetUserInfo(context.Context, *UserMessage) (*UserResponse, error)
-	mustEmbedUnimplementedAdminServiceServer()
+type BlogServiceServer interface {
+	GetAllTags(context.Context, *GetAllTagsRequest) (*GetAllTagsResponse, error)
+	GetAllCategory(context.Context, *GetAllCategoryRequest) (*GetAllCategoryResponse, error)
+	DeleteCategory(context.Context, *DeleteCategoryRequest) (*DeleteCategoryResponse, error)
+	DeleteTag(context.Context, *DeleteTagRequest) (*DeleteTagResponse, error)
+	AddTag(context.Context, *AddTagRequest) (*AddTagResponse, error)
+	AddCategory(context.Context, *AddCategoryRequest) (*AddCategoryResponse, error)
+	AddBlog(context.Context, *AddBlogRequest) (*AddBlogResponse, error)
+	GetOssToken(context.Context, *GetOssTokenRequest) (*GetOssTokenResponse, error)
+	mustEmbedUnimplementedBlogServiceServer()
 }
 
-// UnimplementedAdminServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedAdminServiceServer struct {
+// UnimplementedBlogServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedBlogServiceServer struct {
 }
 
-func (UnimplementedAdminServiceServer) GetUserInfo(context.Context, *UserMessage) (*UserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserInfo not implemented")
+func (UnimplementedBlogServiceServer) GetAllTags(context.Context, *GetAllTagsRequest) (*GetAllTagsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllTags not implemented")
 }
-func (UnimplementedAdminServiceServer) mustEmbedUnimplementedAdminServiceServer() {}
+func (UnimplementedBlogServiceServer) GetAllCategory(context.Context, *GetAllCategoryRequest) (*GetAllCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllCategory not implemented")
+}
+func (UnimplementedBlogServiceServer) DeleteCategory(context.Context, *DeleteCategoryRequest) (*DeleteCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCategory not implemented")
+}
+func (UnimplementedBlogServiceServer) DeleteTag(context.Context, *DeleteTagRequest) (*DeleteTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTag not implemented")
+}
+func (UnimplementedBlogServiceServer) AddTag(context.Context, *AddTagRequest) (*AddTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTag not implemented")
+}
+func (UnimplementedBlogServiceServer) AddCategory(context.Context, *AddCategoryRequest) (*AddCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCategory not implemented")
+}
+func (UnimplementedBlogServiceServer) AddBlog(context.Context, *AddBlogRequest) (*AddBlogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddBlog not implemented")
+}
+func (UnimplementedBlogServiceServer) GetOssToken(context.Context, *GetOssTokenRequest) (*GetOssTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOssToken not implemented")
+}
+func (UnimplementedBlogServiceServer) mustEmbedUnimplementedBlogServiceServer() {}
 
-// UnsafeAdminServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AdminServiceServer will
+// UnsafeBlogServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to BlogServiceServer will
 // result in compilation errors.
-type UnsafeAdminServiceServer interface {
-	mustEmbedUnimplementedAdminServiceServer()
+type UnsafeBlogServiceServer interface {
+	mustEmbedUnimplementedBlogServiceServer()
 }
 
-func RegisterAdminServiceServer(s grpc.ServiceRegistrar, srv AdminServiceServer) {
-	s.RegisterService(&AdminService_ServiceDesc, srv)
+func RegisterBlogServiceServer(s grpc.ServiceRegistrar, srv BlogServiceServer) {
+	s.RegisterService(&BlogService_ServiceDesc, srv)
 }
 
-func _AdminService_GetUserInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserMessage)
+func _BlogService_GetAllTags_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllTagsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AdminServiceServer).GetUserInfo(ctx, in)
+		return srv.(BlogServiceServer).GetAllTags(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/blog.AdminService/GetUserInfo",
+		FullMethod: "/blog.BlogService/GetAllTags",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).GetUserInfo(ctx, req.(*UserMessage))
+		return srv.(BlogServiceServer).GetAllTags(ctx, req.(*GetAllTagsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
+func _BlogService_GetAllCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).GetAllCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blog.BlogService/GetAllCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).GetAllCategory(ctx, req.(*GetAllCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlogService_DeleteCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).DeleteCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blog.BlogService/DeleteCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).DeleteCategory(ctx, req.(*DeleteCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlogService_DeleteTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).DeleteTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blog.BlogService/DeleteTag",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).DeleteTag(ctx, req.(*DeleteTagRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlogService_AddTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).AddTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blog.BlogService/AddTag",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).AddTag(ctx, req.(*AddTagRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlogService_AddCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).AddCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blog.BlogService/AddCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).AddCategory(ctx, req.(*AddCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlogService_AddBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBlogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).AddBlog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blog.BlogService/AddBlog",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).AddBlog(ctx, req.(*AddBlogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlogService_GetOssToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOssTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).GetOssToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blog.BlogService/GetOssToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).GetOssToken(ctx, req.(*GetOssTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// BlogService_ServiceDesc is the grpc.ServiceDesc for BlogService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var AdminService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "blog.AdminService",
-	HandlerType: (*AdminServiceServer)(nil),
+var BlogService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "blog.BlogService",
+	HandlerType: (*BlogServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetUserInfo",
-			Handler:    _AdminService_GetUserInfo_Handler,
+			MethodName: "GetAllTags",
+			Handler:    _BlogService_GetAllTags_Handler,
+		},
+		{
+			MethodName: "GetAllCategory",
+			Handler:    _BlogService_GetAllCategory_Handler,
+		},
+		{
+			MethodName: "DeleteCategory",
+			Handler:    _BlogService_DeleteCategory_Handler,
+		},
+		{
+			MethodName: "DeleteTag",
+			Handler:    _BlogService_DeleteTag_Handler,
+		},
+		{
+			MethodName: "AddTag",
+			Handler:    _BlogService_AddTag_Handler,
+		},
+		{
+			MethodName: "AddCategory",
+			Handler:    _BlogService_AddCategory_Handler,
+		},
+		{
+			MethodName: "AddBlog",
+			Handler:    _BlogService_AddBlog_Handler,
+		},
+		{
+			MethodName: "GetOssToken",
+			Handler:    _BlogService_GetOssToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

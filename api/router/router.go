@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	"libra.com/api/api/blog"
 	"libra.com/api/api/user"
 	"libra.com/api/middleware"
 )
@@ -25,4 +26,5 @@ func InitRouter(r *gin.Engine) {
 	r.Use(middleware.Cors())
 	rg := New()
 	rg.Route(&user.RouterUser{}, r)
+	rg.Route(&blog.RouterBlog{}, r)
 }
