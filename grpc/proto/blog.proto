@@ -92,6 +92,31 @@ message GetOssTokenResponse {
   string expiration = 9;
 }
 
+message GetBlogsRequest {
+  int64 page = 1;
+  int64 pageSize = 2;
+  string title = 3;
+  int64 categoryId = 4;
+  int64 tagId = 5;
+}
+
+message blogInfo {
+  int64 id = 1;
+  string title = 2;
+  string desc = 3;
+  string author = 4;
+  repeated Tags tags = 5;
+  repeated Category category = 6;
+  int64 createAt = 7;
+  int64 updateAt = 8;
+  string imgUrl = 9;
+}
+
+message GetBlogsResponse {
+  repeated blogInfo blogs = 1;
+  int64 total = 2;
+}
+
 service BlogService {
   rpc GetAllTags(GetAllTagsRequest) returns (GetAllTagsResponse);
   rpc GetAllCategory(GetAllCategoryRequest) returns (GetAllCategoryResponse);
@@ -101,4 +126,5 @@ service BlogService {
   rpc AddCategory(AddCategoryRequest) returns (AddCategoryResponse);
   rpc AddBlog(AddBlogRequest) returns (AddBlogResponse);
   rpc GetOssToken(GetOssTokenRequest) returns (GetOssTokenResponse);
+  rpc GetBlogs(GetBlogsRequest) returns (GetBlogsResponse);
 }

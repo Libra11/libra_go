@@ -159,3 +159,16 @@ func (l *ServiceBlog) GetOssToken(ctx context.Context, message *blog.GetOssToken
 	_ = copier.Copy(response, &policyToken)
 	return response, nil
 }
+
+func (l *ServiceBlog) GetBlogs(ctx context.Context, message *blog.GetBlogsRequest) (*blog.GetBlogsResponse, error) {
+	res, err := l.blog.GetBlogs(ctx, message.Page, message.PageSize, message.CategoryId, message.TagId, message.Title)
+	if err != nil {
+		zap.L().Error("db GetBlogs error", zap.Error(err))
+		return nil, errs.GrpcErr(model.GormGetError)
+	}
+	blogsMsg := &blog.GetBlogsResponse{}
+	if res != nil {
+		_ = copier.Copy(&blogsMsg, &res)
+	}
+	return blogsMsg, nil
+}

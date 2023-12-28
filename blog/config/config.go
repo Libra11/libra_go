@@ -6,6 +6,7 @@ import (
 	"libra.com/common/logs"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 var C *Config
@@ -66,6 +67,8 @@ func InitConfig() *Config {
 	workDir, _ := os.Getwd()
 	conf.viper.SetConfigName("config")
 	conf.viper.SetConfigType("yaml")
+	parentDir := filepath.Dir(workDir)
+	conf.viper.AddConfigPath(parentDir + "/configs/blog")
 	conf.viper.AddConfigPath(workDir + "/config")
 	println(workDir + "/config")
 

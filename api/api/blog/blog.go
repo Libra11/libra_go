@@ -144,6 +144,24 @@ func (b HandlerBlog) getOssToken(c *gin.Context) {
 	c.JSON(http.StatusOK, result.Success(res))
 }
 
+func (b HandlerBlog) getBlogs(c *gin.Context) {
+	result := common.Result{}
+	var req blogService.GetBlogsRequest
+	if err := c.ShouldBind(&req); err != nil {
+		c.JSON(http.StatusOK, result.Fail(http.StatusBadRequest, "参数传递有误"))
+		return
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+	res, err := rpc.ClientBlog.GetBlogs(ctx, &req)
+	if err != nil {
+		code, msg := errs.ParseGrpcError(err)
+		c.JSON(http.StatusOK, result.Fail(code, msg))
+		return
+	}
+	c.JSON(http.StatusOK, result.Success(res))
+}
+
 func New() *HandlerBlog {
 	return &HandlerBlog{}
 }

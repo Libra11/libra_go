@@ -2,8 +2,10 @@ package dao
 
 import (
 	"context"
+	"github.com/jinzhu/copier"
 	"libra.com/blog/internal/data/blogs"
 	"libra.com/blog/internal/database/gorms"
+	"libra.com/blog/internal/dto"
 )
 
 type BlogDao struct {
@@ -65,6 +67,48 @@ func (b BlogDao) GetAllCategory(ctx context.Context) ([]*blogs.Category, error) 
 
 func (b BlogDao) AddBlog(ctx context.Context, blog *blogs.Blog) error {
 	return b.conn.Session(ctx).Save(blog).Error
+}
+
+func (b BlogDao) GetBlogs(ctx context.Context, page, pageSize, categoryId, tagId int64, title string) (*dto.BlogList, error) {
+	var res = &dto.BlogList{
+		Blogs: make([]*dto.BlogInfo, 0),
+		Total: 0,
+	}
+	var blogs []*blogs.Blog
+	query := b.conn.Session(ctx).Preload("Category").Preload("Tags")
+
+	if categoryId != 0 {
+		query = query.Joins("JOIN blog_categories ON blog_categories.blog_id = blogs.id").
+			Where("blog_categories.category_id = ?", categoryId)
+	}
+
+	if tagId != 0 {
+		query = query.Joins("JOIN blog_tags ON blog_tags.blog_id = blogs.id").
+			Where("blog_tags.tag_id = ?", tagId)
+	}
+
+	if title != "" {
+		query = query.Where("blogs.title LIKE ?", "%"+title+"%")
+	}
+
+	// 获取总数
+	err := query.Model(&blogs).Count(&res.Total).Error
+	if err != nil {
+		return nil, err
+	}
+
+	// 分页查询
+	err = query.Offset(int((page - 1) * pageSize)).Limit(int(pageSize)).Find(&blogs).Error
+	if err != nil {
+		return nil, err
+	}
+
+	err = copier.Copy(&res.Blogs, &blogs)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
 }
 
 func NewBlogDao() *BlogDao {

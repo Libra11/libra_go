@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3103be76-0397-4afe-a04b-e05f1df97846" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/common/logs/logs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libra_go.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libra_go.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api/blog/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/api/blog/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api/blog/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/api/blog/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/blog/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/blog/config/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/internal/dao/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/blog/internal/dao/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/internal/repo/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/blog/internal/repo/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/pkg/service/blog/blog_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/blog/pkg/service/blog/blog_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grpc/proto/blog.proto" beforeDir="false" afterPath="$PROJECT_DIR$/grpc/proto/blog.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grpc/service/blog/blog.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/grpc/service/blog/blog.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grpc/service/blog/blog_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/grpc/service/blog/blog_grpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/user/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user/config/config.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Program Files/Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/go/pkg/mod/google.golang.org/grpc@v1.58.3/server.go" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="2YbpHeHWi4hgfWnjimNI1pBOBnd" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "C:/Users/Libra/Desktop/libra_go/grpc/proto",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Libra\Desktop\libra_go\grpc\proto" />
+      <recent name="C:\Users\Libra\Desktop\libra_go\blog" />
+      <recent name="C:\Users\Libra\Desktop\libra_go\api\api\admin" />
+      <recent name="C:\Users\Libra\Desktop\libra_go\admin" />
+      <recent name="C:\Users\Libra\Desktop\libra_go\api" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Libra\Desktop\libra_go\common\logs" />
+      <recent name="C:\Users\Libra\Desktop\libra_go\blog\pkg" />
+      <recent name="C:\Users\Libra\Desktop\libra_go\common" />
+      <recent name="C:\Users\Libra\Desktop\libra_go\blog\router" />
+      <recent name="C:\Users\Libra\Desktop\libra_go\api\rpc" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build libra.com/blog">
+    <configuration name="gen" type="BatchConfigurationType" factoryName="Batch" temporary="true">
+      <module name="libra_go" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="./grpc/proto" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="gen.bat" />
+      <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build libra.com/api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="libra_go" />
+      <working_directory value="$PROJECT_DIR$/api" />
+      <kind value="PACKAGE" />
+      <package value="libra.com/api" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/api/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build libra.com/blog" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="libra_go" />
+      <working_directory value="$PROJECT_DIR$/blog" />
+      <kind value="PACKAGE" />
+      <package value="libra.com/blog" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/blog/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build libra.com/user" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="libra_go" />
+      <working_directory value="$PROJECT_DIR$/user" />
+      <kind value="PACKAGE" />
+      <package value="libra.com/user" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/user/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestJwtToken in libra.com/common/jwts" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="libra_go" />
+      <working_directory value="$PROJECT_DIR$/common/jwts" />
+      <root_directory value="$PROJECT_DIR$/common" />
+      <kind value="PACKAGE" />
+      <package value="libra.com/common/jwts" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestJwtToken\E$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build libra.com/blog" />
+        <item itemvalue="Go Build.go build libra.com/api" />
+        <item itemvalue="Go Build.go build libra.com/user" />
+        <item itemvalue="Go Test.TestJwtToken in libra.com/common/jwts" />
+        <item itemvalue="Batch.gen" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="DlvErrorBreakpoint" />
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
