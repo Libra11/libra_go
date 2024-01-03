@@ -172,3 +172,26 @@ func (l *ServiceBlog) GetBlogs(ctx context.Context, message *blog.GetBlogsReques
 	}
 	return blogsMsg, nil
 }
+
+func (l *ServiceBlog) GetBlogById(ctx context.Context, message *blog.GetBlogByIdRequest) (*blog.GetBlogByIdResponse, error) {
+	res, err := l.blog.GetBlogById(ctx, message.Id)
+	if err != nil {
+		zap.L().Error("db GetBlogById error", zap.Error(err))
+		return nil, errs.GrpcErr(model.GormGetError)
+	}
+	a := &blog.Blog{}
+	_ = copier.Copy(&a, &res)
+	blogMsg := &blog.GetBlogByIdResponse{
+		Blog: a,
+	}
+	return blogMsg, nil
+}
+
+func (l *ServiceBlog) DeleteBlog(ctx context.Context, message *blog.DeleteBlogRequest) (*blog.DeleteBlogResponse, error) {
+	err := l.blog.DeleteBlog(ctx, message.Id)
+	if err != nil {
+		zap.L().Error("db DeleteBlog error", zap.Error(err))
+		return nil, errs.GrpcErr(model.GormDeleteError)
+	}
+	return &blog.DeleteBlogResponse{}, nil
+}

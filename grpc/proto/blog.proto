@@ -117,6 +117,21 @@ message GetBlogsResponse {
   int64 total = 2;
 }
 
+message GetBlogByIdRequest {
+  int64 id = 1;
+}
+
+message GetBlogByIdResponse {
+  Blog blog = 1;
+}
+
+message DeleteBlogRequest {
+  int64 id = 1;
+}
+
+message DeleteBlogResponse {
+}
+
 service BlogService {
   rpc GetAllTags(GetAllTagsRequest) returns (GetAllTagsResponse);
   rpc GetAllCategory(GetAllCategoryRequest) returns (GetAllCategoryResponse);
@@ -127,4 +142,6 @@ service BlogService {
   rpc AddBlog(AddBlogRequest) returns (AddBlogResponse);
   rpc GetOssToken(GetOssTokenRequest) returns (GetOssTokenResponse);
   rpc GetBlogs(GetBlogsRequest) returns (GetBlogsResponse);
+  rpc GetBlogById(GetBlogByIdRequest) returns (GetBlogByIdResponse);
+  rpc DeleteBlog(DeleteBlogRequest) returns (DeleteBlogResponse);
 }

@@ -3,6 +3,7 @@ package dao
 import (
 	"context"
 	"github.com/jinzhu/copier"
+	"gorm.io/gorm"
 	"libra.com/blog/internal/data/blogs"
 	"libra.com/blog/internal/database/gorms"
 	"libra.com/blog/internal/dto"
@@ -10,6 +11,31 @@ import (
 
 type BlogDao struct {
 	conn *gorms.GormConn
+}
+
+func (b BlogDao) DeleteBlog(ctx context.Context, id int64) error {
+	// 开始一个新的事务
+	tx := b.conn.Session(ctx).Begin()
+
+	// 首先删除blog_categories表和blog_tags表中所有引用这个blog_id的行
+	if err := tx.Exec("DELETE FROM blog_categories WHERE blog_id = ?", id).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+	if err := tx.Exec("DELETE FROM blog_tags WHERE blog_id = ?", id).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	// 然后删除blogs表中的行
+	if err := tx.Delete(&blogs.Blog{}, "id = ?", id).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	// 如果所有操作都成功，提交事务
+	tx.Commit()
+	return nil
 }
 
 func (b BlogDao) AddTag(ctx context.Context, tag *blogs.Tag) (int64, error) {
@@ -37,8 +63,15 @@ func (b BlogDao) DeleteCategory(ctx context.Context, id int64) error {
 }
 
 func (b BlogDao) GetBlogById(ctx context.Context, id int64) (*blogs.Blog, error) {
-	//TODO implement me
-	panic("implement me")
+	var blog = &blogs.Blog{}
+	result := b.conn.Session(ctx).Preload("Category").Preload("Tags").First(blog, "id = ?", id)
+	if err := result.Error; err != nil {
+		return nil, err
+	}
+	if result.RowsAffected == 0 {
+		return nil, nil
+	}
+	return blog, nil
 }
 
 func (b BlogDao) GetAllTags(ctx context.Context) ([]*blogs.Tag, error) {
@@ -66,7 +99,47 @@ func (b BlogDao) GetAllCategory(ctx context.Context) ([]*blogs.Category, error) 
 }
 
 func (b BlogDao) AddBlog(ctx context.Context, blog *blogs.Blog) error {
-	return b.conn.Session(ctx).Save(blog).Error
+	// 开始一个新的事务
+	tx := b.conn.Session(ctx).Begin()
+
+	// 尝试在数据库中查找是否已存在相同ID的博客
+	var existingBlog blogs.Blog
+	if err := tx.First(&existingBlog, blog.Id).Error; err != nil {
+		if err == gorm.ErrRecordNotFound {
+			// 如果不存在，则执行添加操作
+			if err := tx.Save(blog).Error; err != nil {
+				// 如果保存失败，回滚事务
+				tx.Rollback()
+				return err
+			}
+		} else {
+			// 如果查询过程中出现错误，回滚事务
+			tx.Rollback()
+			return err
+		}
+	} else {
+		// 如果存在，则执行更新操作
+		// 首先删除关联表中与该博客相关的所有记录
+		err := tx.Model(&existingBlog).Association("Category").Clear()
+		if err != nil {
+			return err
+		}
+		err = tx.Model(&existingBlog).Association("Tags").Clear()
+		if err != nil {
+			return err
+		}
+
+		// 然后保存Blog对象
+		if err := tx.Save(blog).Error; err != nil {
+			// 如果保存失败，回滚事务
+			tx.Rollback()
+			return err
+		}
+	}
+
+	// 如果保存成功，提交事务
+	tx.Commit()
+	return nil
 }
 
 func (b BlogDao) GetBlogs(ctx context.Context, page, pageSize, categoryId, tagId int64, title string) (*dto.BlogList, error) {

@@ -5,15 +5,15 @@ import (
 )
 
 type BlogInfo struct {
-	Id       int64       `json:"id"`
-	Title    string      `json:"title"`
-	Desc     string      `json:"desc"`
-	Author   string      `json:"author"`
-	Tags     []blogs.Tag `json:"tags"`
-	Category []blogs.Tag `json:"category"`
-	CreateAt int64       `json:"createAt"`
-	UpdateAt int64       `json:"updateAt"`
-	ImgUrl   string      `json:"imgUrl"`
+	Id       int64            `json:"id"`
+	Title    string           `json:"title"`
+	Desc     string           `json:"desc"`
+	Author   string           `json:"author"`
+	Tags     []blogs.Tag      `json:"tags"`
+	Category []blogs.Category `json:"category"`
+	CreateAt int64            `json:"createAt"`
+	UpdateAt int64            `json:"updateAt"`
+	ImgUrl   string           `json:"imgUrl"`
 }
 
 type BlogList struct {

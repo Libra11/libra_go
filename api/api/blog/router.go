@@ -22,5 +22,8 @@ func (*RouterBlog) Route(r *gin.Engine) {
 	group.POST("/addCategory", h.addCategory)
 	group.POST("/addBlog", h.addBlog)
 	group.GET("/getOssToken", h.getOssToken)
-	group.POST("/getBlogs", h.getBlogs)
+	group.POST("/deleteBlog", h.deleteBlog)
+	group2 := r.Group("/blog")
+	group2.POST("/getBlogs", h.getBlogs)
+	group2.GET("/getBlogById", h.getBlogById)
 }
