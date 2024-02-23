@@ -1,18 +1,18 @@
 server:
   name: "blog"
-  addr: "0.0.0.0:8082"
+  addr: "blog:8082"
 grpc:
   name: "blog"
-  addr: "0.0.0.0:8883"
+  addr: "blog:8883"
   version: "1.0.0"
   weight: 2
 etcd:
   addrs:
     - "etcd3:2379"
 zap:
-  DebugFileName: "/logs/debug/debug.log"
-  InfoFileName:  "/logs/info/info.log"
-  WarnFileName:  "/logs/error/error.log"
+  DebugFileName: "/logs/blog/debug/debug.log"
+  InfoFileName:  "/logs/blog/info/info.log"
+  WarnFileName:  "/logs/blog/error/error.log"
   MaxSize:       500
   MaxAge:        28
   MaxBackups:    3
@@ -24,11 +24,18 @@ redis:
 mysql:
   username: root
   password: root
-  host: 0.0.0.0
-  port: 3309
+  host: mysql8
+  port: 3306
   db: libra
 jwt:
   accessExp: 7
   refreshExp: 30
   accessSecret: libra
   refreshSecret: libra
+aliyunoss:
+  bucketName: libra-blog
+  endpoint: oss-cn-beijing.aliyuncs.com
+  roleArn: acs:ram::1297456591392749:role/ramoss
+  regin: cn-beijing
+  id: LTAI5tB75QwZq1LS3yXJJPk7
+  secret: qW1bQq8cTFC2J7ZGLuOKNJfnWU6EfJ

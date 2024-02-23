@@ -22,8 +22,8 @@ redis:
   password: ""
   db: 0
 mysql:
-  username: xxx
-  password: xxx
+  username: root
+  password: root
   host: localhost
   port: 3309
   db: libra

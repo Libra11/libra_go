@@ -1,2 +1,8 @@
 /logs/*
 /configs/*
+/user/config/config-docker.yaml
+/user/config/config.yaml
+/blog/config/config-docker.yaml
+/blog/config/config.yaml
+/api/config/config-docker.yaml
+/api/config/config.yaml

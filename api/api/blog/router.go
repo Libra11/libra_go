@@ -12,10 +12,9 @@ type RouterBlog struct {
 func (*RouterBlog) Route(r *gin.Engine) {
 	rpc.InitBlogRpcClient()
 	h := New()
+	hw := NewHW()
 	group := r.Group("/blog")
 	group.Use(middleware.TokenVerify()) // 使用TokenVerify中间件
-	group.GET("/getAllTags", h.getAllTags)
-	group.GET("/getAllCategory", h.getAllCategory)
 	group.POST("/deleteTag", h.deleteTag)
 	group.POST("/deleteCategory", h.deleteCategory)
 	group.POST("/addTag", h.addTag)
@@ -23,7 +22,13 @@ func (*RouterBlog) Route(r *gin.Engine) {
 	group.POST("/addBlog", h.addBlog)
 	group.GET("/getOssToken", h.getOssToken)
 	group.POST("/deleteBlog", h.deleteBlog)
+	group.POST("/addWord", hw.addWord)
+	group.POST("/deleteWord", hw.deleteWord)
 	group2 := r.Group("/blog")
+	group2.GET("/getAllTags", h.getAllTags)
+	group2.GET("/getAllCategory", h.getAllCategory)
 	group2.POST("/getBlogs", h.getBlogs)
 	group2.GET("/getBlogById", h.getBlogById)
+	group2.POST("/getWords", hw.getWords)
+	group2.GET("/getWordById", hw.getWordById)
 }

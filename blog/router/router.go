@@ -6,9 +6,11 @@ import (
 	"google.golang.org/grpc/resolver"
 	"libra.com/blog/config"
 	blogService "libra.com/blog/pkg/service/blog"
+	wordService "libra.com/blog/pkg/service/word"
 	"libra.com/common/discovery"
 	"libra.com/common/logs"
 	"libra.com/grpc/service/blog"
+	"libra.com/grpc/service/word"
 	"log"
 	"net"
 )
@@ -42,6 +44,7 @@ func InitGRPCServer() *grpc.Server {
 		Addr: config.C.GC.Addr,
 		RegisterFunc: func(s *grpc.Server) {
 			blog.RegisterBlogServiceServer(s, blogService.New())
+			word.RegisterWordServiceServer(s, wordService.New())
 		},
 	}
 	s := grpc.NewServer()
@@ -50,6 +53,7 @@ func InitGRPCServer() *grpc.Server {
 	if err != nil {
 		log.Println("cannot listen")
 	}
+	log.Println("grpc server start at", config.C.GC.Addr)
 	go func() {
 		err = s.Serve(lis)
 		if err != nil {

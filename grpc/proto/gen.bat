@@ -5,13 +5,15 @@ echo.
 echo 1. Run user.proto
 echo 2. Run admin.proto
 echo 3. Run blog.proto
-echo 4. Exit
+echo 4. Run word.proto
+echo 5. Exit
 echo.
 set /p choice="Enter your choice: "
 if "%choice%"=="1" goto user
 if "%choice%"=="2" goto admin
 if "%choice%"=="3" goto blog
-if "%choice%"=="4" goto end
+if "%choice%"=="4" goto word
+if "%choice%"=="5" goto end
 goto menu
 
 :user
@@ -24,6 +26,10 @@ goto menu
 
 :blog
 protoc --go_out=../service/blog --go_opt=paths=source_relative --go-grpc_out=../service/blog --go-grpc_opt=paths=source_relative  ./blog.proto
+goto menu
+
+:word
+protoc --go_out=../service/word --go_opt=paths=source_relative --go-grpc_out=../service/word --go-grpc_opt=paths=source_relative  ./word.proto
 goto menu
 
 :end

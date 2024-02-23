@@ -20,6 +20,7 @@
   SET GOARCH=amd64
   go build -o user/target/user.exe user/main.go
   go build -o api/target/api.exe api/main.go
+  go build -o blog/target/blog.exe blog/main.go
   :build_linux_amd64
   echo 编译Linux版本64位
   SET CGO_ENABLED=0
@@ -27,3 +28,4 @@
   SET GOARCH=amd64
   go build -o user/target/user user/main.go
   go build -o api/target/api api/main.go
+  go build -o blog/target/blog blog/main.go

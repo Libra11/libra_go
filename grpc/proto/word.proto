@@ -1,0 +1,55 @@
+syntax = "proto3";
+package word;
+option go_package = ".;word";
+
+message Word {
+  int64 id = 1;
+  string word = 2;
+  string definition = 3;
+  string example = 4;
+  string phrase = 5;
+  int64 createAt = 6;
+  int64 updateAt = 7;
+  string phonetic = 8;
+}
+
+message AddWordRequest {
+  Word word = 1;
+}
+
+message AddWordResponse {
+  int64 id = 1;
+}
+
+message GetWordsRequest {
+  int64 page = 1;
+  int64 pageSize = 2;
+  string word = 3;
+}
+
+message GetWordsResponse {
+  repeated Word words = 1;
+  int64 total = 2;
+}
+
+message DeleteWordRequest {
+  int64 id = 1;
+}
+
+message DeleteWordResponse {
+}
+
+message GetWordByIdRequest {
+  int64 id = 1;
+}
+
+message GetWordByIdResponse {
+  Word word = 1;
+}
+
+service WordService {
+  rpc AddWord(AddWordRequest) returns (AddWordResponse);
+  rpc GetWords(GetWordsRequest) returns (GetWordsResponse);
+  rpc DeleteWord(DeleteWordRequest) returns (DeleteWordResponse);
+  rpc GetWordById(GetWordByIdRequest) returns (GetWordByIdResponse);
+}

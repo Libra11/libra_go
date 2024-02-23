@@ -8,10 +8,12 @@ import (
 	"libra.com/common/discovery"
 	"libra.com/common/logs"
 	blogService "libra.com/grpc/service/blog"
+	wordService "libra.com/grpc/service/word"
 	"log"
 )
 
 var ClientBlog blogService.BlogServiceClient
+var ClientWord wordService.WordServiceClient
 
 func InitBlogRpcClient() {
 	etcdRegister := discovery.NewResolver(config.C.EC.Addrs, logs.LG)
@@ -21,4 +23,5 @@ func InitBlogRpcClient() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	ClientBlog = blogService.NewBlogServiceClient(conn)
+	ClientWord = wordService.NewWordServiceClient(conn)
 }
