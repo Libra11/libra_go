@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3103be76-0397-4afe-a04b-e05f1df97846" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/987c6670-016f-4138-b3a6-de6f1c88eeef.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/987c6670-016f-4138-b3a6-de6f1c88eeef.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api/blog/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/api/blog/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/rpc/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/rpc/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/target/api" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/api" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/config/config-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/blog/config/config-docker.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/blog/config/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/internal/dto/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/blog/internal/dto/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/blog/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grpc/proto/gen.bat" beforeDir="false" afterPath="$PROJECT_DIR$/grpc/proto/gen.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/user/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/config/config-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user/config/config-docker.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user/config/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/target/user" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/user" afterDir="false" />
-    </list>
+    <list default="true" id="3103be76-0397-4afe-a04b-e05f1df97846" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
