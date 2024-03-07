@@ -8,6 +8,7 @@ import (
 	"libra.com/blog/internal/data/blogs"
 	"libra.com/blog/internal/repo"
 	"libra.com/blog/pkg/model"
+	"libra.com/common/crawler"
 	"libra.com/common/errs"
 	"libra.com/grpc/service/word"
 )
@@ -65,6 +66,20 @@ func (l *ServiceWord) GetWordById(ctx context.Context, message *word.GetWordById
 		Word: a,
 	}
 	return wordMsg, nil
+}
+
+func (l *ServiceWord) GetWordTranslate(ctx context.Context, message *word.GetWordTranslateRequest) (*word.GetWordTranslateResponse, error) {
+	translate := crawler.GetTranslate(message.Word)
+	var w = &word.Word{
+		Word:       translate.Title,
+		Definition: translate.Definition,
+		Phrase:     translate.Phrase,
+		Example:    translate.Example,
+		Phonetic:   translate.Phonetic,
+	}
+	return &word.GetWordTranslateResponse{
+		Word: w,
+	}, nil
 }
 
 func New() *ServiceWord {

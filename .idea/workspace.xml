@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3103be76-0397-4afe-a04b-e05f1df97846" name="Changes" comment="" />
+    <list default="true" id="3103be76-0397-4afe-a04b-e05f1df97846" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api/blog/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/api/blog/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api/blog/word.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/api/blog/word.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/api" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/internal/dao/word.go" beforeDir="false" afterPath="$PROJECT_DIR$/blog/internal/dao/word.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/internal/repo/word.go" beforeDir="false" afterPath="$PROJECT_DIR$/blog/internal/repo/word.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/pkg/service/word/word_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/blog/pkg/service/word/word_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/target/blog" beforeDir="false" afterPath="$PROJECT_DIR$/blog/target/blog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/common/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/common/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.work.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.work.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grpc/proto/word.proto" beforeDir="false" afterPath="$PROJECT_DIR$/grpc/proto/word.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grpc/service/word/word.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/grpc/service/word/word.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grpc/service/word/word_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/grpc/service/word/word_grpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/user" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/user" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -134,8 +150,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build libra.com/api" />
         <item itemvalue="Go Build.go build libra.com/blog" />
+        <item itemvalue="Go Build.go build libra.com/api" />
         <item itemvalue="Go Build.go build libra.com/user" />
         <item itemvalue="Go Test.TestJwtToken in libra.com/common/jwts" />
         <item itemvalue="Batch.gen" />

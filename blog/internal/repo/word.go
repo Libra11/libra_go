@@ -11,4 +11,5 @@ type WordRepo interface {
 	GetWords(ctx context.Context, page, pageSize int64) (*dto.WordList, error)
 	DeleteWord(ctx context.Context, id int64) error
 	GetWordById(ctx context.Context, id int64) (*blogs.Word, error)
+	GetWordTranslate(ctx context.Context, word string) (*blogs.Word, error)
 }

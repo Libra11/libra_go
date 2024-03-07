@@ -13,6 +13,11 @@ type WordDao struct {
 	conn *gorms.GormConn
 }
 
+func (b WordDao) GetWordTranslate(ctx context.Context, word string) (*blogs.Word, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (b WordDao) AddWord(ctx context.Context, word *blogs.Word) (int64, error) {
 	var exitWord blogs.Word
 	err := b.conn.Session(ctx).First(&exitWord, "word = ?", word.Word).Error

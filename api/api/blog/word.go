@@ -89,6 +89,27 @@ func (b HandlerWord) getWordById(c *gin.Context) {
 	c.JSON(http.StatusOK, result.Success(res))
 }
 
+func (b HandlerWord) getWordTranslate(c *gin.Context) {
+	result := common.Result{}
+	word := c.Query("word")
+	if word == "" {
+		c.JSON(http.StatusOK, result.Fail(http.StatusBadRequest, "参数传递有误"))
+		return
+	}
+	var req = &wordService.GetWordTranslateRequest{
+		Word: word,
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+	res, err := rpc.ClientWord.GetWordTranslate(ctx, req)
+	if err != nil {
+		code, msg := errs.ParseGrpcError(err)
+		c.JSON(http.StatusOK, result.Fail(code, msg))
+		return
+	}
+	c.JSON(http.StatusOK, result.Success(res))
+}
+
 func NewHW() *HandlerWord {
 	return &HandlerWord{}
 }

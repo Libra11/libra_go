@@ -26,6 +26,7 @@ type WordServiceClient interface {
 	GetWords(ctx context.Context, in *GetWordsRequest, opts ...grpc.CallOption) (*GetWordsResponse, error)
 	DeleteWord(ctx context.Context, in *DeleteWordRequest, opts ...grpc.CallOption) (*DeleteWordResponse, error)
 	GetWordById(ctx context.Context, in *GetWordByIdRequest, opts ...grpc.CallOption) (*GetWordByIdResponse, error)
+	GetWordTranslate(ctx context.Context, in *GetWordTranslateRequest, opts ...grpc.CallOption) (*GetWordTranslateResponse, error)
 }
 
 type wordServiceClient struct {
@@ -72,6 +73,15 @@ func (c *wordServiceClient) GetWordById(ctx context.Context, in *GetWordByIdRequ
 	return out, nil
 }
 
+func (c *wordServiceClient) GetWordTranslate(ctx context.Context, in *GetWordTranslateRequest, opts ...grpc.CallOption) (*GetWordTranslateResponse, error) {
+	out := new(GetWordTranslateResponse)
+	err := c.cc.Invoke(ctx, "/word.WordService/GetWordTranslate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WordServiceServer is the server API for WordService service.
 // All implementations must embed UnimplementedWordServiceServer
 // for forward compatibility
@@ -80,6 +90,7 @@ type WordServiceServer interface {
 	GetWords(context.Context, *GetWordsRequest) (*GetWordsResponse, error)
 	DeleteWord(context.Context, *DeleteWordRequest) (*DeleteWordResponse, error)
 	GetWordById(context.Context, *GetWordByIdRequest) (*GetWordByIdResponse, error)
+	GetWordTranslate(context.Context, *GetWordTranslateRequest) (*GetWordTranslateResponse, error)
 	mustEmbedUnimplementedWordServiceServer()
 }
 
@@ -98,6 +109,9 @@ func (UnimplementedWordServiceServer) DeleteWord(context.Context, *DeleteWordReq
 }
 func (UnimplementedWordServiceServer) GetWordById(context.Context, *GetWordByIdRequest) (*GetWordByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWordById not implemented")
+}
+func (UnimplementedWordServiceServer) GetWordTranslate(context.Context, *GetWordTranslateRequest) (*GetWordTranslateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWordTranslate not implemented")
 }
 func (UnimplementedWordServiceServer) mustEmbedUnimplementedWordServiceServer() {}
 
@@ -184,6 +198,24 @@ func _WordService_GetWordById_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WordService_GetWordTranslate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWordTranslateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WordServiceServer).GetWordTranslate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/word.WordService/GetWordTranslate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WordServiceServer).GetWordTranslate(ctx, req.(*GetWordTranslateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WordService_ServiceDesc is the grpc.ServiceDesc for WordService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -206,6 +238,10 @@ var WordService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetWordById",
 			Handler:    _WordService_GetWordById_Handler,
+		},
+		{
+			MethodName: "GetWordTranslate",
+			Handler:    _WordService_GetWordTranslate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

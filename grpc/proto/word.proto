@@ -47,9 +47,18 @@ message GetWordByIdResponse {
   Word word = 1;
 }
 
+message GetWordTranslateRequest {
+  string word = 1;
+}
+
+message GetWordTranslateResponse {
+  Word word = 1;
+}
+
 service WordService {
   rpc AddWord(AddWordRequest) returns (AddWordResponse);
   rpc GetWords(GetWordsRequest) returns (GetWordsResponse);
   rpc DeleteWord(DeleteWordRequest) returns (DeleteWordResponse);
   rpc GetWordById(GetWordByIdRequest) returns (GetWordByIdResponse);
+  rpc GetWordTranslate(GetWordTranslateRequest) returns (GetWordTranslateResponse);
 }
