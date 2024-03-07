@@ -6,3 +6,6 @@
 /blog/config/config.yaml
 /api/config/config-docker.yaml
 /api/config/config.yaml
+/api/target/*
+/blog/target/*
+/user/target/*
